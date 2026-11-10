@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mała niespodzianka 💗</title>
+<style>
+:root{--pink:#ef6da5;--deep:#b83270;--pale:#fff0f6;--paper:#fffafd;--line:#ffc1da;--text:#70264b;--shadow:0 14px 35px #c84c8120}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;font-family:ui-rounded,"Trebuchet MS",system-ui,sans-serif;color:var(--text);background:radial-gradient(circle at 12% 10%,#fff 0 2px,transparent 3px),linear-gradient(135deg,#e480aa,#f79bc3 50%,#fff0f7);background-size:32px 32px,auto}
+button{font:inherit;cursor:pointer}
+.hidden{display:none!important}
+.screen{min-height:100vh;padding:28px 16px;display:flex;align-items:center;justify-content:center}
+.panel{width:min(900px,100%);position:relative;background:#fffafdeF;border:2px solid #ffc5dc;border-radius:28px;padding:clamp(22px,5vw,42px);box-shadow:var(--shadow);overflow:hidden}
+.panel:before,.panel:after{content:"♡";position:absolute;color:#ffb0d0;font-size:34px;opacity:.75;pointer-events:none}
+.panel:before{top:14px;left:18px}.panel:after{right:18px;bottom:10px}
+h1,h2,p{margin-top:0}h1{font-size:clamp(1.9rem,5vw,3rem);margin-bottom:8px;color:var(--deep)}h2{color:var(--deep);font-size:clamp(1.5rem,4vw,2.2rem);margin-bottom:8px}
+.subtitle{opacity:.85;margin-bottom:24px}
+.center{text-align:center}
+.lock{font-size:3.6rem;margin-bottom:6px;filter:drop-shadow(0 4px 0 #ffc8df)}
+.pin{display:flex;justify-content:center;gap:10px;margin:24px 0}
+.pin input{width:clamp(48px,12vw,65px);height:65px;border:2px solid var(--line);border-radius:14px;background:white;text-align:center;font-size:1.8rem;color:var(--deep);outline:none}
+.pin input:focus{border-color:var(--pink);box-shadow:0 0 0 4px #f9a9cb55}
+.btn{border:0;border-radius:999px;padding:13px 25px;color:white;background:linear-gradient(135deg,#f28ab7,#dc4f91);box-shadow:0 7px 0 #bf3c79;transition:.15s}
+.btn:active{transform:translateY(3px);box-shadow:0 4px 0 #bf3c79}
+.msg{max-width:440px;margin:18px auto 0;padding:13px 16px;border-radius:15px;font-weight:700}
+.error{background:#fff0f0;border:1px solid #ff9baf;color:#b51e4a}.success{background:#edfff2;border:1px solid #91d6a4;color:#247843}
+.error .face{font-size:1.8rem;display:block;margin-bottom:4px}
+.hearts{letter-spacing:10px;color:#f18bb8;margin-top:25px}
+.topline{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.back{flex:none;width:44px;height:44px;border:0;border-radius:50%;background:#f06da5;color:white;font-size:1.5rem;box-shadow:0 4px 0 #c44780}
+.topline div{flex:1;text-align:center;padding-right:44px}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.choice{border:2px solid #ffc4dc;background:#fff4f9;border-radius:19px;padding:10px;color:var(--text);text-align:center;transition:.18s;min-width:0}
+.choice:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:#ef77ac}
+.art{height:135px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:4rem;margin-bottom:10px;overflow:hidden;position:relative}
+.art:after{content:"♡";position:absolute;right:9px;top:5px;font-size:1.6rem;color:#fff9}
+.art.photos{background:linear-gradient(145deg,#ffb4cf,#fce4ef 50%,#e99ac1)}
+.art.wishes{background:linear-gradient(145deg,#ffe7a8,#fff1f5 50%,#ffc3dd)}
+.art.gift{background:linear-gradient(145deg,#ff8eb7,#ffd3e4)}
+.art.extra{background:linear-gradient(145deg,#c9a4e8,#ffc8df 60%,#ffebf4)}
+.choice strong{display:block;color:var(--deep);margin-bottom:4px}.choice small{opacity:.8}
+.photo-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;max-width:650px;margin:0 auto}
+.photo-card{border-radius:18px;overflow:hidden;background:white;border:2px solid #ffd1e3;text-align:center;box-shadow:0 5px 15px #c84c8114}
+.photo-art{height:clamp(125px,26vw,230px);display:flex;align-items:center;justify-content:center;font-size:clamp(3rem,8vw,5rem);position:relative}
+.photo-art.one{background:linear-gradient(150deg,#f9a9c9,#ffe9f2 48%,#f2a4bf)}
+.photo-art.two{background:linear-gradient(145deg,#f7b3a8,#fcebd9 45%,#b2c7e9)}
+.photo-art.three{background:linear-gradient(145deg,#f4d1e5,#b7c8ed 60%,#f8e6ef)}
+.photo-art.four{background:linear-gradient(145deg,#ed9fbd,#6d719d 70%,#ffc4d9)}
+.photo-card p{margin:9px 5px 12px;font-weight:700}
+.letter{max-width:620px;margin:15px auto 4px;padding:clamp(24px,5vw,48px);background:#fff6f8;border:1px solid #f7c1d6;border-radius:8px;box-shadow:0 8px 25px #c84c8117;transform:rotate(-1deg);font-family:Georgia,serif;font-size:clamp(1.1rem,3vw,1.35rem);line-height:1.8;text-align:center}
+.giftbox{font-size:7rem;animation:bob 2s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-8px) rotate(3deg)}}
+.extra-box{max-width:580px;margin:12px auto;background:linear-gradient(135deg,#fff0f7,#f5e8ff);border:1px solid #ffc5df;border-radius:22px;padding:30px;text-align:center}
+.extra-box .emoji{font-size:5rem}
+.note{font-size:.9rem;opacity:.75;margin-top:20px}
+@media(max-width:650px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.art{height:120px}.panel{padding:25px 16px}.screen{padding:14px 10px}.pin input{height:57px}.topline div{padding-right:0}.topline{gap:6px}}
+@media(max-width:360px){.grid{gap:8px}.choice{padding:7px}.art{height:100px}}
+
+#photosScreen .photo-art {
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 16px 16px 0 0;
+}
+
+#photosScreen .photo-art img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Dopasowanie na telefonie */
+@media (max-width: 600px) {
+    #photosScreen .photo-art {
+        height: 150px;
+    }
+}
+
+
+#menuScreen .choice .art {
+    width: 100%;
+    height: 160px;
+    overflow: hidden;
+    border-radius: 14px;
+    margin-bottom: 12px;
+}
+
+#menuScreen .choice .art img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+#menuScreen .choice:hover .art img {
+    transform: scale(1.05);
+}
+
+#menuScreen .choice {
+    overflow: hidden;
+    cursor: pointer;
+}
+
+@media (max-width: 600px) {
+    #menuScreen .choice .art {
+        height: 115px;
+    }
+}
+
+
+.giftbox {
+    display: block;
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 20px;
+    margin: 0 auto;
+    animation: bob 2s ease-in-out infinite;
+    cursor: pointer;
+    filter: drop-shadow(0 8px 10px #c84c8130);
+}
+
+@keyframes bob {
+    50% {
+        transform: translateY(-8px) rotate(3deg);
+    }
+}
+
+@media (max-width: 600px) {
+    .giftbox {
+        width: 180px;
+        height: 180px;
+    }
+}
+</style>
+</head>
+<body>
+<section id="lockScreen" class="screen">
+  <div class="panel center" style="max-width:540px">
+    <div class="lock">🔐</div>
+    <h1>Wpisz hasło</h1>
+    <p class="subtitle">Aby przejść dalej, wpisz 4 liczby ♡</p>
+    <form id="pinForm">
+      <div class="pin" aria-label="Czterocyfrowe hasło">
+        <input inputmode="numeric" pattern="[0-9]*" maxlength="1" aria-label="Cyfra 1" autofocus>
+        <input inputmode="numeric" pattern="[0-9]*" maxlength="1" aria-label="Cyfra 2">
+        <input inputmode="numeric" pattern="[0-9]*" maxlength="1" aria-label="Cyfra 3">
+        <input inputmode="numeric" pattern="[0-9]*" maxlength="1" aria-label="Cyfra 4">
+      </div>
+      <button class="btn" type="submit">Otwórz niespodziankę ♥</button>
+    </form>
+    <div id="pinMessage" aria-live="polite"></div>
+    <div class="hearts">♡ ─── ♥ ─── ♡</div>
+  </div>
+</section>
+
+<section id="menuScreen" class="screen hidden">
+    <div class="panel">
+
+        <div class="center">
+            <h1>Niespodzianka! 💗</h1>
+            <p class="subtitle">
+                Wybierz okienko, jakie tylko chcesz, i zobacz, co jest w środku ;3
+            </p>
+        </div>
+
+        <div class="grid">
+
+            <button class="choice" data-open="photos">
+                <div class="art photos">
+                    <img src="kot1.jpg" alt="List prosto z serca">
+                </div>
+                <strong>1</strong>
+            </button>
+
+            <button class="choice" data-open="wishes">
+                <div class="art wishes">
+                    <img src="pes.jpg" alt="Różowe kwiaty">
+                </div>
+                <strong>2</strong>
+                
+            </button>
+
+            <button class="choice" data-open="gift">
+                <div class="art gift">
+                    <img src="ham.jpg" alt="Różowe serce">
+                </div>
+                <strong>3</strong>
+                
+            </button>
+
+            <button class="choice" data-open="extra">
+                <div class="art extra">
+                    <img src="zaba.jpg" alt="Księżyc i gwiazdy">
+                </div>
+                <strong>4</strong>
+                
+            </button>
+
+        </div>
+
+        <p class="center note">
+            Wybierz dowolny obrazek, zawsze możesz wrócić i wybrać inny 💕
+        </p>
+
+    </div>
+</section>
+
+<section id="photosScreen" class="screen hidden">
+ <div class="panel">
+  <div class="topline"><button class="back" data-back aria-label="Wróć do wyboru">←</button><div><h2> ❣️ </h2></div></div>
+  <div class="photo-grid">
+    <div class="photo-card" data-letter="heart">
+        <div class="photo-art one">
+            <img src="kot.jpg" alt="Różowy list z sercem">
+        </div>
+        <p>Tekst numer uno </p>
+    </div>
+
+    <div class="photo-card" data-letter="words">
+        <div class="photo-art two">
+            <img src="kot2.jpg" alt="Różowe kwiaty">
+        </div>
+        <p>Tekst numer dos </p>
+    </div>
+
+    <div class="photo-card" data-letter="love">
+        <div class="photo-art three">
+            <img src="kot3.jpg" alt="Świecące różowe serce">
+        </div>
+        <p>Tekst numer tres</p>
+    </div>
+
+    <div class="photo-card" data-letter="future">
+        <div class="photo-art four">
+            <img src="kot4.jpg" alt="Księżyc i gwiazdy">
+        </div>
+        <p>Tekst numer cuatro</p>
+   </div>
+   <div>
+    <small>Ps Naciśnij na obrazek</small>
+   </div>
+   </div>
+
+
+</section>
+
+<section id="wishesScreen" class="screen hidden">
+ <div class="panel">
+  <div class="topline"><button class="back" data-back aria-label="Wróć do wyboru">←</button><div><h2>Liścik MUAH</h2><p class="subtitle">Dla mojego misia</p></div></div>
+  <div class="letter">Miało być początkowo poetycznie, czy tak będzie? <br> Raczej, nie z moimi słowami w których sama się gubię... <br><br> Długie to nie będzie, ale no cóż... <br> Kolejny miesiąc z tobą i wciąż nie mam dość. <br> Dziękuje, żę rozjaśniasz mój każdy dzień i przede wszystkim za bycie przy mnie w trudnych chwilach. <br> <strong>Kocham cię! 💗</strong><small> (Miały być życzenia, ale coś nie wyszło...)</small></div>
+ </div>
+</section>
+
+<section id="giftScreen" class="screen hidden">
+ <div class="panel center">
+  <div class="topline"><button class="back" data-back aria-label="Wróć do wyboru">←</button><div><h2>Niespodzianka</h2><p class="subtitle">Kliknij prezent i odkryj wiadomość!!</p></div></div>
+  <button id="giftButton" style="border:0;background:transparent" aria-label="Otwórz prezent">
+    <img class="giftbox" src="prezent.jpg" alt="Niespodzianka">
+</button>
+  <h2 id="giftTitle">Co jest w środku?</h2><p id="giftText" 💕</p>
+  <button class="btn" id="openGift">Otwórz prezent ✨</button>
+ </div>
+</section>
+
+<section id="extraScreen" class="screen hidden">
+ <div class="panel">
+  <div class="topline"><button class="back" data-back aria-label="Wróć do wyboru">←</button><div><h2>Nie wiem co robie ale buja </h2><p class="subtitle"> Malusie wiadomości ;P</p></div></div>
+  <div class="extra-box"><div class="emoji" id="extraEmoji">❣️</div><h2 id="extraTitle">Przypominajka dnia</h2><p id="extraText">Nie musisz robić wszystkiego idealnie. Jesteś i tak super, widać jak sie starasz. 💗</p><button class="btn" id="newNote">Wylosuj wiadomość ♡</button></div>
+ </div>
+</section>
+<script>
+// ZMIEŃ HASŁO TUTAJ — dokładnie 4 cyfry:
+const CORRECT_PIN = "1110";
+const inputs = [...document.querySelectorAll(".pin input")];
+const pinMessage = document.getElementById("pinMessage");
+const screens = [...document.querySelectorAll(".screen")];
+function showScreen(id){screens.forEach(s=>s.classList.add("hidden"));document.getElementById(id).classList.remove("hidden");window.scrollTo({top:0,behavior:"smooth"});}
+inputs.forEach((input,i)=>{
+ input.addEventListener("input",()=>{input.value=input.value.replace(/\D/g,"").slice(-1);if(input.value&&inputs[i+1])inputs[i+1].focus();});
+ input.addEventListener("keydown",e=>{if(e.key==="Backspace"&&!input.value&&inputs[i-1])inputs[i-1].focus();});
+ input.addEventListener("paste",e=>{const t=(e.clipboardData||window.clipboardData).getData("text").replace(/\D/g,"").slice(0,4);if(t){e.preventDefault();t.split("").forEach((c,j)=>{if(inputs[j])inputs[j].value=c});inputs[Math.min(t.length,3)].focus();}});
+});
+document.getElementById("pinForm").addEventListener("submit",e=>{
+ e.preventDefault();const value=inputs.map(i=>i.value).join("");
+ if(value===CORRECT_PIN){pinMessage.innerHTML='<div class="msg success">✅ Hasło poprawne! 💗</div>';setTimeout(()=>showScreen("menuScreen"),850);}
+ else{pinMessage.innerHTML='<div class="msg error"><span class="face"> D; </span> Ajajaj... Nieprawidłowe hasło.<br>Spróbuj jeszcze raz 💗</div>';inputs.forEach(i=>i.value="");inputs[0].focus();}
+});
+document.querySelectorAll("[data-open]").forEach(b=>b.addEventListener("click",()=>showScreen(b.dataset.open+"Screen")));
+document.querySelectorAll("[data-back]").forEach(b=>b.addEventListener("click",()=>showScreen("menuScreen")));
+function openGift(){document.getElementById("giftTitle").textContent="Niespodzianka dla Ciebie! 💖";document.getElementById("giftText").textContent="Ten prezent to przypomnienie, że zasługujesz na mnóstwo pięknych momentów. Wręcz tych najlepszych jakie mogą cie spotkać. :DDD ";}
+document.getElementById("giftButton").addEventListener("click",openGift);document.getElementById("openGift").addEventListener("click",openGift);
+const notes=[["❣️","Dobra rzecz o Tobie","Masz w sobie więcej dobra, niż czasem zauważasz. 💗"],["🩷","Pamiętaj o sobie","Zrób dziś coś małego, co sprawia Ci przyjemność ;3"],["💞","Pomyśl o czymś miłym.","Naprzykład o mnie, albo o jedzeniu"],["💘","Zadanie na dziś","Znajdź jedną drobną rzecz, która wywoła uśmiech :D"]];
+document.getElementById("newNote").addEventListener("click",()=>{const n=notes[Math.floor(Math.random()*notes.length)];document.getElementById("extraEmoji").textContent=n[0];document.getElementById("extraTitle").textContent=n[1];document.getElementById("extraText").textContent=n[2];});
+
+
+(() => {
+    const grid = document.querySelector('#photosScreen .photo-grid');
+    if (!grid) return;
+
+    const messages = {
+        heart: {
+            title: '-v-',
+text: 'Chcę, żebyś wiedział, jak wiele dla mnie znaczysz. Dziękuję ci, że jesteś i sprawiasz, że nawet zwyczajne chwile stają się z tobą, aż tak wyjątkowe <3'
+        },
+        words: {
+            title: ':3',
+            text: 'Czasami wystarczy jedna wiadomość od ciebie, a pojawia mi się uśmiech na twarzy, wtedy odrazu cały dzień staje się piękniejszy:^'
+        },
+        love: {
+            title: '<3 ',
+            text: 'Kocham te małe rzeczy, które czynią Cię wyjątkową osobą. Twój uśmiech, twój charakter i wszystkie chwile, w których mogę po prostu być obok ciebieeeee :DDD'
+        },
+        future: {
+            title: ':P',
+            text: 'Przed nami jest jeszcze mnóstwo wspólnych chwil, rozmów, śmiechu i pięknych momentów. Mam nadzieję, że najpiękniejsze momenty są dopiero przed nami C: '
+        }
+    };
+
+    grid.querySelectorAll('.photo-card[data-letter]').forEach(card => {
+        card.addEventListener('click', () => {
+            const message = messages[card.dataset.letter];
+            if (!message) return;
+
+            // Okienko należy wyłącznie do tego kafelka.
+            let popup = card.querySelector('.letter-popup');
+
+            if (popup) {
+                popup.remove();
+                return;
+            }
+// Zamknij poprzednią wiadomość tylko w tej siatce.
+            grid.querySelectorAll('.letter-popup').forEach(el => el.remove());
+
+            popup = document.createElement('div');
+            popup.className = 'letter-popup';
+
+            const title = document.createElement('h3');
+            title.textContent = message.title;
+
+            const text = document.createElement('p');
+            text.textContent = message.text;
+
+            const close = document.createElement('button');
+            close.type = 'button';
+            close.textContent = '♡ Zamknij';
+            close.addEventListener('click', event => {
+                event.stopPropagation();
+                popup.remove();
+            });
+
+            popup.append(title, text, close);
+            card.appendChild(popup);
+        });
+    });
+})();
+</script>
+</body>
+</html>
